@@ -1,7 +1,9 @@
+using App.Application.ICommand;
+
 namespace App.Application
 {
     public interface IGateHistory
     {
-        public void register();
+        public void Register(ICommand command);
     }
 }
