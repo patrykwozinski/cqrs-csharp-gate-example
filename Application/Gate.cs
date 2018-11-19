@@ -1,6 +1,7 @@
 using App.Application.ICommand;
 using App.Application.IGateHistory;
 using App.Application.DuplicatedCommandException;
+using App.Application.RunEnvironment;
 
 namespace App.Application
 {
@@ -13,9 +14,12 @@ namespace App.Application
     {
         private readonly IGateHistory _gateHistory;
 
-        public Gate(IGateHistory gateHistory)
+        private readonly RunEnvironment _runEnvironment;
+
+        public Gate(IGateHistory gateHistory, RunEnvironment runEnvironment)
         {
             _gateHistory = gateHistory;
+            _runEnvironment = runEnvironment;
         }
 
         public void Dispatch(ICommand command)
@@ -30,6 +34,8 @@ namespace App.Application
 
                 return;
             }
+
+            _runEnvironment.run(command);
         }
     }
 }
