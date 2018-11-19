@@ -1,5 +1,3 @@
-using App.Application.ICommand;
-
 namespace App.Application
 {
     public class CommandHandlerProvider

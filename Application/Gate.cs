@@ -1,9 +1,4 @@
-using App.Application.ICommand;
-using App.Application.IGateHistory;
-using App.Application.DuplicatedCommandException;
-using App.Application.RunEnvironment;
-using App.Application.Asynchronous;
-using App.Application.IQueue;
+using App.Application.Exception;
 
 namespace App.Application
 {
@@ -40,7 +35,7 @@ namespace App.Application
                 return;
             }
 
-            if (command is Asynchronous)
+            if (command is IAsynchronous)
             {
                 // Queue should pass command to RunEnvironment
                 _queue.push(command);
