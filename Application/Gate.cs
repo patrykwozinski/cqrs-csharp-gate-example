@@ -1,5 +1,6 @@
 using App.Application.ICommand;
 using App.Application.IGateHistory;
+using App.Application.DuplicatedCommandException;
 
 namespace App.Application
 {
@@ -15,6 +16,20 @@ namespace App.Application
         public Gate(IGateHistory gateHistory)
         {
             _gateHistory = gateHistory;
+        }
+
+        public void Dispatch(ICommand command)
+        {
+            try
+            {
+                _gateHistory.register(command);
+            }
+            catch (DuplicatedCommandException)
+            {
+                // This should be logger with info about duplicated command
+
+                return;
+            }
         }
     }
 }
