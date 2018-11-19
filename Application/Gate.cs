@@ -8,7 +8,7 @@ namespace App.Application
         public void Dispatch(ICommand command);
     }
 
-    public class Gate
+    public class Gate : IGate
     {
         private readonly IGateHistory _gateHistory;
 
